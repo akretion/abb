@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2014 Akretion
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data>
+
+<report id="report_stk_label_address_decl"
+    model="stock.picking"
+    string="Address Label"
+    report_type="qweb-html"
+    name="stk_report.report_stk_label_address"
+    file="stk_report.label_address"/>
+
+
+</data>
+</openerp>

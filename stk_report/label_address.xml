@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2014 Akretion
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data>
+
+<template id="report_stk_label_address">
+
+<t t-call="report.html_container">
+<t t-call="report.internal_layout">
+
+   <!-- Comes from http://boulderinformationservices.wordpress.com/2011/08/25/print-avery-labels-using-css-and-html/ -->
+    <style type="text/css">
+    body {
+        width: 8.5in;
+        margin: 0.35in .1875in;
+        font-weight:bold;
+        }
+    .label_address{
+        /* Avery labels -- CSS and HTML by MM at Boulder Information Services */
+        width: 3.5in; /* plus .6 inches from padding */
+        height: 1.67in; /* plus .125 inches from padding */
+        padding: .125in .3in 0;
+        margin-right: .125in; /* the gutter */
+
+        float: left;
+
+        text-align: center;
+        overflow: hidden;
+
+        outline: 1px dotted; /* outline doesn't occupy space like border does */
+        }
+    .page-break  {
+        clear: left;
+        display:block;
+        page-break-after:always;
+        }
+    </style>
+
+<t t-foreach="docs" t-as="o">
+
+<div class="page">
+    <t t-set="list_packages" t-value="range(1, o.number_of_packages + 1)"/>
+    <t t-foreach="list_packages" t-as="i">
+        <div class="label_address">
+            <div t-field="o.partner_id.name"/>
+            <div t-field="o.partner_id.street"/>
+            <div t-field="o.partner_id.street2"/>
+            <div>
+                <span t-field="o.partner_id.zip"/>
+                <span t-field="o.partner_id.city"/>
+            </div>
+            <t t-if="o.partner_id.country_id and o.partner_id.country_id.code != 'FR'">
+            <div t-field="o.partner_id.country_id.name"/>
+            </t>
+        </div>
+    </t>
+</div>
+</t>
+
+</t>
+</t>
+
+</template>
+
+<template id="report_stk_label_address_trans">
+  <t t-call="report.html_container">
+    <t t-foreach="doc_ids" t-as="doc_id">
+      <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'stk_report.report_stk_label_address')"/>
+    </t>
+  </t>
+</template>
+
+
+</data>
+</openerp>
