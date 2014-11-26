@@ -20,8 +20,10 @@
         font-weight:bold;
         }
     .label_address{
-        /* Avery labels -- CSS and HTML by MM at Boulder Information Services */
         width: 3.5in; /* plus .6 inches from padding */
+    }
+    .label_recipient{
+        /* Avery labels -- CSS and HTML by MM at Boulder Information Services */
         height: 1.67in; /* plus .125 inches from padding */
         padding: .125in .3in 0;
         margin-right: .125in; /* the gutter */
@@ -43,9 +45,10 @@
 <t t-foreach="docs" t-as="o">
 
 <div class="page">
-    <t t-set="list_packages" t-value="range(1, o.number_of_packages + 1)"/>
+    <t t-set="number_of_packages" t-value="o.number_of_packages or 1"/>
+    <t t-set="list_packages" t-value="range(1, number_of_packages + 1)"/>
     <t t-foreach="list_packages" t-as="i">
-        <div class="label_address">
+        <div class="label_recipient label_address">
             <div t-field="o.partner_id.name"/>
             <div t-field="o.partner_id.street"/>
             <div t-field="o.partner_id.street2"/>
