@@ -67,26 +67,30 @@
                     <td>Poids</td>
                     <td>Colisage</td>
                     <td>Expédition</td>
+                    <td>Date</td>
                 </tr>
                 <tr>
                     <td><span t-field="pack.weight"/></td>
                     <td><t t-esc="counter"/> / <t t-esc="packages_number"/></td>
-                    <td><span t-field="o.date"/></td>
+                    <td><span t-field="o.name"/></td>
+                    <t t-set="bla" t-value="o.date[:10]"/>
+                    <td><t t-esc="bla"/></td>
                 </tr>
                 </tbody>
             </table>
-
-            <div><b>EXPEDITEUR</b></div>
-            <div t-field="o.company_id.name"/>
-            <div>
-                <span t-field="o.company_id.zip"/>
-                <span t-field="o.company_id.city"/>
-            </div>
-            <div>
-                Tel <span t-field="o.company_id.phone"/>
-                &#160; &#160;
-                Fax <span t-field="o.company_id.fax"/> &#160;
-                <span>vpc@barroux.org</span>
+            <div class="small">
+                <div><b>EXPEDITEUR</b></div>
+                <div t-field="o.company_id.name"/>
+                <div>
+                    <span t-field="o.company_id.zip"/>
+                    <span t-field="o.company_id.city"/>
+                </div>
+                <div>
+                    Tel <span t-field="o.company_id.phone"/>
+                    &#160; &#160;
+                    Fax <span t-field="o.company_id.fax"/> &#160;
+                    <span>vpc@barroux.org</span>
+                </div>
             </div>
         </div>
     </t>
